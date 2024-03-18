@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "ConsoleApp3": {
+      "commandName": "Project",
+      "commandLineArgs": "",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:31024;http://localhost:31025"
+    }
+  }
+}

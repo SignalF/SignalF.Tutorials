@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tutorial", "Tutorial\Tutorial.csproj", "{BC487C35-BCAB-4530-B6C0-6D459EB52243}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.Devices.CpuTemperature", "..\..\SignalF.Devices\Source\SignalF.Devices.CpuTemperature\SignalF.Devices.CpuTemperature.csproj", "{773223DB-6FB1-4A90-A5FE-7D48B011C9A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{773223DB-6FB1-4A90-A5FE-7D48B011C9A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{773223DB-6FB1-4A90-A5FE-7D48B011C9A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{773223DB-6FB1-4A90-A5FE-7D48B011C9A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{773223DB-6FB1-4A90-A5FE-7D48B011C9A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5FF7A71A-0FA7-46CE-8B91-DF93C4C442F0}
+	EndGlobalSection
+EndGlobal
