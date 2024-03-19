@@ -14,4 +14,8 @@
     <PackageReference Include="SignalF.Extensions.Controller" Version="0.8.0-dev.37" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SignalF.DataOutput\Source\SignalF.DataOutput.Console\SignalF.DataOutput.Console.csproj" />
+  </ItemGroup>
+
 </Project>

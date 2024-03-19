@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Versioning;
 using SignalF.Controller;
 using SignalF.Controller.Configuration;
+using SignalF.DataOutput.Console;
 using SignalF.Devices.CpuTemperature;
 using SignalF.Extensions.Configuration;
 using SignalF.Extensions.Controller;
@@ -29,6 +30,9 @@ public class Program
 
                 // Register device implementations
                 services.AddCpuTemperature();
+
+                // Register data outputs.
+                services.AddDataOutputSenderConsole();
             });
 
         var host = hostBuilder.Build();
