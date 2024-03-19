@@ -1,12 +1,11 @@
-/Source/_ReSharper.Caches
-/Source/packages
+_ReSharper.Caches
 bin
 obj
 .vs
 .vscode
 *.user
-/packages
+packages
 
-/Build/Nuget/*.nupkg
-/Test/TestController/packages
-/LocalPackages
+*.nupkg
+packages
+LocalPackages

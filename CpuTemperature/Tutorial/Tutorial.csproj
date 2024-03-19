@@ -9,12 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.11" />
-    <PackageReference Include="SignalF.Extensions.Controller" Version="0.8.0-dev.11" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\SignalF.Devices\Source\SignalF.Devices.CpuTemperature\SignalF.Devices.CpuTemperature.csproj" />
+    <PackageReference Include="SignalF.Devices.CpuTemperature" Version="0.8.0-dev.5" />
+    <PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.37" />
+    <PackageReference Include="SignalF.Extensions.Controller" Version="0.8.0-dev.37" />
   </ItemGroup>
 
 </Project>

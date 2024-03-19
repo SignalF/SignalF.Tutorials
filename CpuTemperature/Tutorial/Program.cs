@@ -1,8 +1,10 @@
 ﻿using System.Runtime.Versioning;
 using SignalF.Controller;
 using SignalF.Controller.Configuration;
+using SignalF.Devices.CpuTemperature;
 using SignalF.Extensions.Configuration;
 using SignalF.Extensions.Controller;
+using Tutorial.Configuration;
 
 namespace Tutorial;
 
@@ -22,8 +24,11 @@ public class Program
             .UseSignalFConfiguration()
             .ConfigureServices(services =>
             {
-                    services.AddSignalFControllerService();
-                    services.AddTransient<ISystemConfiguration, MyConfiguration>();
+                services.AddSignalFControllerService();
+                services.AddTransient<ISystemConfiguration, SystemConfiguration>();
+
+                // Register device implementations
+                services.AddCpuTemperature();
             });
 
         var host = hostBuilder.Build();
