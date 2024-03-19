@@ -23,6 +23,20 @@ public class SystemConfiguration : ISystemConfiguration
             .AddTasks()
             .AddTaskMappings();
 
+        signalFConfiguration.AddConsole(
+            builder =>
+            {
+                builder.SetName("DataOutputSenderConsole")
+                    .SetOptions(new DataOutputSenderConsoleOptions
+                    {
+                        ShowTimestamp = true,
+                    });
+            });
+
+
+
+
+
         signalFConfiguration.Build(configuration);
     }
 }
