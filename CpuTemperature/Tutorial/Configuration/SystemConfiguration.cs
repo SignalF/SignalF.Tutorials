@@ -2,7 +2,6 @@
 using SignalF.Configuration;
 using SignalF.Controller.Configuration;
 using SignalF.Datamodel.Configuration;
-using SignalF.DataOutput.Console;
 
 namespace Tutorial.Configuration;
 
@@ -20,14 +19,13 @@ public class SystemConfiguration : ISystemConfiguration
     {
         var signalFConfiguration = _configurationFactory();
 
-        signalFConfiguration.AddDevices()
+        signalFConfiguration
+            .AddDevices()
             .AddDataOutputs()
             .AddDataOutputSenders()
             .AddTasks()
             .AddTaskMappings();
-
-
-
+        
         signalFConfiguration.Build(configuration);
     }
 }
