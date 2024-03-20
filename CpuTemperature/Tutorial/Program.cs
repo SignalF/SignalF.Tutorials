@@ -1,5 +1,4 @@
 ﻿using System.Runtime.Versioning;
-using SignalF.Controller;
 using SignalF.Controller.Configuration;
 using SignalF.DataOutput.Console;
 using SignalF.Devices.CpuTemperature;
@@ -14,26 +13,20 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var options = CliOptionParser.ParseCliArguments(new ApplicationArgumentCollection());
-        if (options.ShowHelp)
-        {
-            return;
-        }
-
         var hostBuilder = Host.CreateDefaultBuilder(args)
-            .UseSignalFController()
-            .UseSignalFConfiguration()
-            .ConfigureServices(services =>
-            {
-                services.AddSignalFControllerService();
-                services.AddTransient<ISystemConfiguration, SystemConfiguration>();
+                              .UseSignalFController()
+                              .UseSignalFConfiguration()
+                              .ConfigureServices(services =>
+                              {
+                                  services.AddSignalFControllerService();
+                                  services.AddTransient<ISystemConfiguration, SystemConfiguration>();
 
-                // Register device implementations
-                services.AddCpuTemperature();
+                                  // Register device implementations
+                                  services.AddCpuTemperature();
 
-                // Register data outputs.
-                services.AddDataOutputSenderConsole();
-            });
+                                  // Register data outputs.
+                                  services.AddDataOutputSenderConsole();
+                              });
 
         var host = hostBuilder.Build();
 
