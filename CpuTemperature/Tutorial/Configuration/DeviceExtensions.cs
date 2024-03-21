@@ -9,7 +9,7 @@ public static class DeviceExtensions
     [SupportedOSPlatform("linux")]
     public static ISignalFConfiguration AddDevices(this ISignalFConfiguration configuration)
     {
-        configuration.AddCpuTemperature("CpuTemperature", "CPU-Temperature");
+        configuration.AddCpuTemperature("CPU", "Temperature");
 
         return configuration;
     }

@@ -24,7 +24,7 @@ public static class TaskExtensions
     {
         configuration.AddTaskMappings(builder =>
         {
-            builder.MapSignalProcessorToTask("CpuTemperature", OneSecondWriteTask);
+            builder.MapSignalProcessorToTask("CPU", OneSecondWriteTask);
         });
 
         return configuration;
