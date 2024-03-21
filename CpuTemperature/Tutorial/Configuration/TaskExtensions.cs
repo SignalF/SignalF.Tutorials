@@ -6,8 +6,9 @@ namespace Tutorial.Configuration;
 
 public static class TaskExtensions
 {
-    private static readonly string OneSecondWriteTask = "1s write task";
-    private static readonly string OneSecondReadTask = "1s read task";
+    private const string OneSecondWriteTask = "1s write task";
+    private const string OneSecondReadTask = "1s read task";
+    private const string OneSecondCalculateTask = "1s calculate task";
 
     public static ISignalFConfiguration AddTasks(this ISignalFConfiguration configuration)
     {
@@ -15,6 +16,7 @@ public static class TaskExtensions
         {
             builder.AddTask(OneSecondWriteTask, 0, ETaskType.Write, 1.0, Time.Units.Second);
             builder.AddTask(OneSecondReadTask, 0, ETaskType.Read, 1.0, Time.Units.Second);
+            builder.AddTask(OneSecondCalculateTask, 0, ETaskType.Calculate, 1.0, Time.Units.Second);
         });
 
         return configuration;
@@ -22,10 +24,7 @@ public static class TaskExtensions
 
     public static ISignalFConfiguration AddTaskMappings(this ISignalFConfiguration configuration)
     {
-        configuration.AddTaskMappings(builder =>
-        {
-            builder.MapSignalProcessorToTask("CPU", OneSecondWriteTask);
-        });
+        configuration.AddTaskMappings(builder => { builder.MapSignalProcessorToTask("CPU", OneSecondWriteTask); });
 
         return configuration;
     }
