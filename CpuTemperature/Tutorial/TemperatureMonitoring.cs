@@ -13,14 +13,13 @@ namespace Tutorial
         private const double CriticalLevel = 100.0;
         private const int NumberOfOutputSignals = 4;
 
-        private const int TemperatureId = 0;
-        private const int OkId = 1;
-        private const int WarningId = 2;
-        private const int AlarmId = 3;
-        private const int FanId = 4;
+        private const int OkId = 0;
+        private const int WarningId = 1;
+        private const int AlarmId = 2;
+        private const int FanId = 3;
 
         private Signal _temperature;
-        private Signal[] _outputSignals = new Signal[4];
+        private readonly Signal[] _outputSignals = new Signal[4];
 
         public TemperatureMonitoring(ISignalHub signalHub, ILogger<SignalProcessor<ICalculatorConfiguration>> logger) 
             : base(signalHub, logger)
@@ -62,7 +61,7 @@ namespace Tutorial
                     }
                     default:
                     {
-                        throw new ControllerException("Implementation for Temperaturmonitoring does not support a signa");
+                        throw new ControllerException($"Unsupported signal {signalName}");
                     }
                 }
             }
@@ -76,6 +75,13 @@ namespace Tutorial
                 {
                     break;
                 }
+                case ETaskType.Calculate:
+                {
+                    var timestamp = SignalHub.GetTimestamp();
+                        _outputSignals[OkId] = _outputSignals[OkId] with{Value = _temperature.Value < WarnLevel ? 1.0 : 0.0 } 
+
+                    break;
+                }
                 case ETaskType.Read:
                 {
                     _temperature = SignalHub.GetSignal(_temperature.SignalIndex);
@@ -83,13 +89,9 @@ namespace Tutorial
                 }
                 case ETaskType.Write:
                 {
-                    for (var i = 0; i < NumberOfSignals; i++)
+                    for (var i = 0; i < NumberOfOutputSignals; i++)
                     {
-                        // Not all signals may be configured for an instance of BME280.
-                        if (_signalIndexes[i] >= 0)
-                        {
-                            WriteSignal(_outputSignals[i]);
-                        }
+                        WriteSignal(_outputSignals[i]);
                     }
 
                     break;
