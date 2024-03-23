@@ -27,7 +27,7 @@ public class TemperatureMonitoring : SignalProcessor<ICalculatorConfiguration>, 
     }
 
     
-    public override void unsafe Execute(ETaskType taskType)
+    public override void Execute(ETaskType taskType)
     {
         switch (taskType)
         {
@@ -37,10 +37,6 @@ public class TemperatureMonitoring : SignalProcessor<ICalculatorConfiguration>, 
             }
             case ETaskType.Calculate:
             {
-                var signals =? stackalloc Signal[4]
-                {
-                    {0,0,0},
-                }
 
                 var timestamp = SignalHub.GetTimestamp();
                 _outputSignals[OkId] = _outputSignals[OkId] with { Value = _temperature.Value < WarnLevel ? 1.0 : 0.0, Timestamp = timestamp };
@@ -55,16 +51,16 @@ public class TemperatureMonitoring : SignalProcessor<ICalculatorConfiguration>, 
             }
             case ETaskType.Read:
             {
-                _temperature = SignalHub.GetSignal(_temperature.SignalIndex);
+                //_temperature = SignalHub.GetSignal(_temperature.SignalIndex);
                 break;
             }
             case ETaskType.Write:
             {
-                SignalHub.SetValues(_outputSignals);
-                for (var i = 0; i < NumberOfOutputSignals; i++)
-                {
-                    WriteSignal(_outputSignals[i]);
-                }
+                //SignalHub.SetValues(_outputSignals);
+                //for (var i = 0; i < NumberOfOutputSignals; i++)
+                //{
+                //    WriteSignal(_outputSignals[i]);
+                //}
 
                 break;
             }

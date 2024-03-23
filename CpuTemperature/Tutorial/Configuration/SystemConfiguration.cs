@@ -21,8 +21,8 @@ public class SystemConfiguration : ISystemConfiguration
 
         signalFConfiguration
             .AddDevices()
-            .AddDataOutputs()
-            .AddDataOutputSenders()
+            //.AddDataOutputs()
+            //.AddDataOutputSenders()
             .AddTasks()
             .AddTaskMappings();
         
