@@ -1,4 +1,5 @@
-﻿using SignalF.Controller;
+﻿using Iot.Device.CpuTemperature;
+using SignalF.Controller;
 using SignalF.Controller.Calculator;
 using SignalF.Controller.Signals;
 using SignalF.Controller.Signals.SignalProcessor;
@@ -11,99 +12,56 @@ public class TemperatureMonitoring : SignalProcessor<ICalculatorConfiguration>, 
 {
     private const double WarnLevel = 70.0;
     private const double CriticalLevel = 100.0;
-    private const int NumberOfOutputSignals = 4;
+    private const int NumberOfSignalSinks = 1;
+    private const int NumberOfSignalSources = 4;
 
-    private const int OkId = 0;
-    private const int WarningId = 1;
-    private const int AlarmId = 2;
-    private const int FanId = 3;
-    private readonly Signal[] _outputSignals = new Signal[4];
+    private const int TemperatureIndex = 0;
 
-    private Signal _temperature;
+    private const int OkIndex = 0;
+    private const int WarningIndex = 1;
+    private const int AlarmIndex = 2;
+    private const int FanIndex = 3;
+
+    private readonly int[] _signalSourceMapping = new int[NumberOfSignalSources];
+    private readonly int[] _signalSinkMapping = new int[NumberOfSignalSinks];
+
 
     public TemperatureMonitoring(ISignalHub signalHub, ILogger<SignalProcessor<ICalculatorConfiguration>> logger)
         : base(signalHub, logger)
     {
     }
 
-    
-    public override void Execute(ETaskType taskType)
+    protected override void OnWrite()
     {
-        switch (taskType)
-        {
-            case ETaskType.Init:
-            {
-                break;
-            }
-            case ETaskType.Calculate:
-            {
+    }
 
-                var timestamp = SignalHub.GetTimestamp();
-                _outputSignals[OkId] = _outputSignals[OkId] with { Value = _temperature.Value < WarnLevel ? 1.0 : 0.0, Timestamp = timestamp };
-                _outputSignals[WarningId] = _outputSignals[WarningId] with
-                {
-                    Value = _temperature.Value is >= WarnLevel and < CriticalLevel ? 1.0 : 0.0, Timestamp = timestamp
-                };
-                _outputSignals[AlarmId] = _outputSignals[AlarmId] with { Value = _temperature.Value >= CriticalLevel ? 1.0 : 0.0, Timestamp = timestamp };
-                _outputSignals[FanId] = _outputSignals[FanId] with { Value = _temperature.Value >= WarnLevel ? 1.0 : 0.0, Timestamp = timestamp };
+    protected override void OnRead()
+    {
+    }
 
-                break;
-            }
-            case ETaskType.Read:
-            {
-                //_temperature = SignalHub.GetSignal(_temperature.SignalIndex);
-                break;
-            }
-            case ETaskType.Write:
-            {
-                //SignalHub.SetValues(_outputSignals);
-                //for (var i = 0; i < NumberOfOutputSignals; i++)
-                //{
-                //    WriteSignal(_outputSignals[i]);
-                //}
+    protected override void OnCalculate()
+    {
+        var timestamp = SignalHub.GetTimestamp();
+        var temperature = SignalSinks[TemperatureIndex].Value;
 
-                break;
-            }
-            case ETaskType.Exit:
-            {
-                break;
-            }
-            default:
-                throw new ArgumentOutOfRangeException(nameof(taskType), taskType, "Task type is not supported.");
-        }
+        SignalSources[OkIndex].AssignWith(temperature < WarnLevel ? 1.0 : 0.0, timestamp);
+        SignalSources[WarningIndex].AssignWith(temperature is >= WarnLevel and < CriticalLevel ? 1.0 : 0.0, timestamp);
+        SignalSources[AlarmIndex].AssignWith(temperature >= CriticalLevel ? 1.0 : 0.0, timestamp);
+        SignalSources[FanIndex].AssignWith(temperature >= WarnLevel ? 1.0 : 0.0, timestamp);
     }
 
     protected override void OnConfigure(ICalculatorConfiguration configuration)
     {
         base.OnConfigure(configuration);
 
-        foreach (var (signalName, index) in SignalNameToIndexMapping)
+        foreach (var signalSink in configuration.SignalSinks)
         {
+            var signalName = configuration.Definition.Name;
             switch (signalName)
             {
-                case "Temperature":
+                case "CpuTemperature":
                 {
-                    _temperature = new Signal(index, double.NaN, null);
-                    break;
-                }
-                case "OK":
-                {
-                    _outputSignals[OkId] = new Signal(index, double.NaN, null);
-                    break;
-                }
-                case "Warning":
-                {
-                    _outputSignals[WarningId] = new Signal(index, double.NaN, null);
-                    break;
-                }
-                case "Alarm":
-                {
-                    _outputSignals[AlarmId] = new Signal(index, double.NaN, null);
-                    break;
-                }
-                case "Fan":
-                {
-                    _outputSignals[FanId] = new Signal(index, double.NaN, null);
+                    _signalSinkMapping[TemperatureIndex] = GetSignalIndex(signalSink);
                     break;
                 }
                 default:
@@ -112,10 +70,37 @@ public class TemperatureMonitoring : SignalProcessor<ICalculatorConfiguration>, 
                 }
             }
         }
-    }
 
-    private void InitializeDevice()
-    {
-        throw new NotImplementedException();
+        foreach (var signalSource in configuration.SignalSources)
+        {
+            var signalName = configuration.Definition.Name;
+            switch (signalName)
+            {
+                case "OK":
+                {
+                    _signalSourceMapping[OkIndex] = GetSignalIndex(signalSource);
+                    break;
+                }
+                case "Warning":
+                {
+                    _signalSourceMapping[WarningIndex] = GetSignalIndex(signalSource);
+                    break;
+                }
+                case "Alarm":
+                {
+                    _signalSourceMapping[AlarmIndex] = GetSignalIndex(signalSource);
+                    break;
+                }
+                case "Fan":
+                {
+                    _signalSourceMapping[FanIndex] = GetSignalIndex(signalSource);
+                    break;
+                }
+                default:
+                {
+                    throw new ControllerException($"Unsupported signal {signalName}");
+                }
+            }
+        }
     }
 }
