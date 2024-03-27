@@ -1,14 +1,12 @@
-﻿using Iot.Device.CpuTemperature;
-using SignalF.Controller;
-using SignalF.Controller.Calculator;
+﻿using SignalF.Controller;
 using SignalF.Controller.Signals;
-using SignalF.Controller.Signals.SignalProcessor;
+using SignalF.Controller.Signals.Calculators;
 using SignalF.Datamodel.Calculation;
-using SignalF.Datamodel.Configuration;
+using ICalculator = SignalF.Controller.Calculators.ICalculator;
 
-namespace Tutorial;
+namespace Tutorial.Monitoring;
 
-public class TemperatureMonitoring : SignalProcessor<ICalculatorConfiguration>, ICalculator
+public class TemperatureMonitoring : Calculator<ICalculatorConfiguration>, ICalculator
 {
     private const double WarnLevel = 70.0;
     private const double CriticalLevel = 100.0;
@@ -21,12 +19,11 @@ public class TemperatureMonitoring : SignalProcessor<ICalculatorConfiguration>, 
     private const int WarningIndex = 1;
     private const int AlarmIndex = 2;
     private const int FanIndex = 3;
-
-    private readonly int[] _signalSourceMapping = new int[NumberOfSignalSources];
     private readonly int[] _signalSinkMapping = new int[NumberOfSignalSinks];
 
+    private readonly int[] _signalSourceMapping = new int[NumberOfSignalSources];
 
-    public TemperatureMonitoring(ISignalHub signalHub, ILogger<SignalProcessor<ICalculatorConfiguration>> logger)
+    public TemperatureMonitoring(ISignalHub signalHub, ILogger<Calculator<ICalculatorConfiguration>> logger)
         : base(signalHub, logger)
     {
     }
@@ -56,7 +53,7 @@ public class TemperatureMonitoring : SignalProcessor<ICalculatorConfiguration>, 
 
         foreach (var signalSink in configuration.SignalSinks)
         {
-            var signalName = configuration.Definition.Name;
+            var signalName = signalSink.Definition.Name;
             switch (signalName)
             {
                 case "CpuTemperature":
@@ -73,7 +70,7 @@ public class TemperatureMonitoring : SignalProcessor<ICalculatorConfiguration>, 
 
         foreach (var signalSource in configuration.SignalSources)
         {
-            var signalName = configuration.Definition.Name;
+            var signalName = signalSource.Definition.Name;
             switch (signalName)
             {
                 case "OK":

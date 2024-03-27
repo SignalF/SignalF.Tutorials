@@ -5,6 +5,7 @@ using SignalF.Devices.CpuTemperature;
 using SignalF.Extensions.Configuration;
 using SignalF.Extensions.Controller;
 using Tutorial.Configuration;
+using Tutorial.Monitoring;
 
 namespace Tutorial;
 
@@ -23,6 +24,9 @@ public class Program
 
                                   // Register device implementations
                                   services.AddCpuTemperature();
+                                  
+                                  // Register calculator implementations
+                                  services.AddMonitoring();
 
                                   // Register data outputs.
                                   services.AddDataOutputSenderConsole();

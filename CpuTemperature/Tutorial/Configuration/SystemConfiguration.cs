@@ -2,6 +2,8 @@
 using SignalF.Configuration;
 using SignalF.Controller.Configuration;
 using SignalF.Datamodel.Configuration;
+using Tutorial.Monitoring;
+using Tutorial.Configuration;
 
 namespace Tutorial.Configuration;
 
@@ -21,8 +23,10 @@ public class SystemConfiguration : ISystemConfiguration
 
         signalFConfiguration
             .AddDevices()
-            //.AddDataOutputs()
-            //.AddDataOutputSenders()
+            .AddTemperatureMonitoring()
+            .AddConnections()
+            .AddDataOutputs()
+            .AddDataOutputSenders()
             .AddTasks()
             .AddTaskMappings();
         

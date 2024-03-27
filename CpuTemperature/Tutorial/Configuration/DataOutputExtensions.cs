@@ -10,7 +10,7 @@ namespace Tutorial.Configuration
             configuration.AddDataOutputConfiguration(builder =>
             {
                 builder.SetName("Measurement")
-                    .AddSignalSource("CpuTemperature.CPU-Temperature")
+                    .AddSignalSource("CPU.Temperature")
                     .AddDataOutputSender("DataOutputSenderConsole");
             });
 
