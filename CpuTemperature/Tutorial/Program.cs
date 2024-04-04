@@ -26,7 +26,7 @@ public class Program
                                   services.AddCpuTemperature();
                                   
                                   // Register calculator implementations
-                                  services.AddMonitoring();
+                                  services.AddTemperatureMonitoring();
 
                                   // Register data outputs.
                                   services.AddDataOutputSenderConsole();
