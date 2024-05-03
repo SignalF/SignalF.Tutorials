@@ -7,7 +7,7 @@ namespace Tutorial.Monitoring;
 
 public static class MonitoringExtensions
 {
-    public static IServiceCollection AddMonitoring(this IServiceCollection services)
+    public static IServiceCollection AddTemperatureMonitoring(this IServiceCollection services)
     {
         return services.AddTransient<TemperatureMonitoring>();
     }
