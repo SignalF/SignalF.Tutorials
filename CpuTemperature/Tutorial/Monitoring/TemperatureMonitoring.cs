@@ -1,4 +1,5 @@
-﻿using SignalF.Controller;
+﻿using Scotec.Math.Units;
+using SignalF.Controller;
 using SignalF.Controller.Signals;
 using SignalF.Controller.Signals.Calculators;
 using SignalF.Datamodel.Calculation;
@@ -39,11 +40,11 @@ public class TemperatureMonitoring : Calculator<ICalculatorConfiguration>, ICalc
     protected override void OnCalculate()
     {
         var timestamp = SignalHub.GetTimestamp();
-        var temperature = SignalSinks[TemperatureIndex].Value;
+        var temperature = new Temperature(SignalSinks[TemperatureIndex].Value)[Temperature.Units.DegreeCelsius];
 
         SignalSources[OkIndex].AssignWith(temperature < WarnLevel ? 1.0 : 0.0, timestamp);
         SignalSources[WarningIndex].AssignWith(temperature is >= WarnLevel and < CriticalLevel ? 1.0 : 0.0, timestamp);
-        SignalSources[AlarmIndex].AssignWith(temperature >= CriticalLevel ? 1.0 : 0.0, timestamp);
+        SignalSources[AlarmIndex].AssignWith(double.IsNaN(temperature) || temperature >= CriticalLevel ? 1.0 : 0.0, timestamp);
         SignalSources[FanIndex].AssignWith(temperature >= WarnLevel ? 1.0 : 0.0, timestamp);
     }
 

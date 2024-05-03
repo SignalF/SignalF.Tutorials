@@ -26,7 +26,8 @@ public static class TaskExtensions
     {
         configuration.AddTaskMappings(builder => { builder.MapSignalProcessorToTask("CPU", OneSecondWriteTask); })
                      .AddTaskMappings(builder => { builder.MapSignalProcessorToTask("TemperatureMonitoring", OneSecondCalculateTask); })
-                     .AddTaskMappings(builder => { builder.MapSignalProcessorToTask("TemperatureMonitoring", OneSecondCalculateTask); })
+                     //.AddTaskMappings(builder => { builder.MapSignalProcessorToTask("TemperatureMonitoring", OneSecondCalculateTask); })
+                     .AddTaskMappings(builder => { builder.MapSignalProcessorToTask("GpioPinAccess", OneSecondReadTask); })
                      ;
 
         return configuration;
