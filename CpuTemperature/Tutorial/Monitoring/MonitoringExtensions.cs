@@ -38,11 +38,11 @@ public static class MonitoringExtensions
         {
             builder.UseDefinition("TemperatureMonitoring")
                    .SetName("TemperatureMonitoring")
-            .AddSignalSinkConfiguration("CpuTemperature", "CpuTemperature", Temperature.Units.DegreeCelsius)
-            .AddSignalSourceConfiguration("OK", "OK")
-            .AddSignalSourceConfiguration("Warning", "Warning")
-            .AddSignalSourceConfiguration("Alarm", "Alarm")
-            .AddSignalSourceConfiguration("Fan", "Fan");
+                   .AddSignalSinkConfiguration("CpuTemperature", "CpuTemperature", Temperature.Units.DegreeCelsius)
+                   .AddSignalSourceConfiguration("OK", "OK")
+                   .AddSignalSourceConfiguration("Warning", "Warning")
+                   .AddSignalSourceConfiguration("Alarm", "Alarm")
+                   .AddSignalSourceConfiguration("Fan", "Fan");
         });
     }
 }

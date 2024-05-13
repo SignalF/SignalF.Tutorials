@@ -23,7 +23,6 @@ public class Program
                                   services.AddTransient<ISystemConfiguration, SystemConfiguration>();
 
                                   // Register device implementations
-                                  
                                   services.AddCpuTemperature();
                                   
                                   // Register calculator implementations

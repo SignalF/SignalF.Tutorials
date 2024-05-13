@@ -78,16 +78,10 @@ public static class DeviceExtensions
     
     private static ISignalFConfiguration AddGpioPinAccess(this ISignalFConfiguration configuration)
     {
-        configuration.AddGpioPinAccessTemplate<IGpioPinAccess>(builder =>
-        {
-            builder.SetName("GpioPinAccessTemplate");
-        });
-
         configuration.AddGpioPinAccessDefinition<IGpioPinAccess>(builder =>
         {
             builder.SetName("GpioPinAccessDefinition")
-                   //.UseTemplate("DefaultTemplate")
-                   .UseTemplate("GpioPinAccessTemplate")
+                   .UseTemplate("DefaultTemplate")
                    .AddSignalSinkDefinition("OK")
                    .AddSignalSinkDefinition("Warning")
                    .AddSignalSinkDefinition("Alarm")
