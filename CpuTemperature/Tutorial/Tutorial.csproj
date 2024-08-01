@@ -12,8 +12,8 @@
   <ItemGroup>
     <PackageReference Include="SignalF.DataOutput.Console" Version="0.8.0-dev.17" />
     <PackageReference Include="SignalF.Devices.CpuTemperature" Version="0.8.0-dev.13" />
-    <PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.61" />
-    <PackageReference Include="SignalF.Extensions.Controller" Version="0.8.0-dev.61" />
+    <PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.67" />
+    <PackageReference Include="SignalF.Extensions.Controller" Version="0.8.0-dev.67" />
   </ItemGroup>
 
 </Project>
