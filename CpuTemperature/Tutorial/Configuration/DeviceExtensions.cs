@@ -15,11 +15,11 @@ public static class DeviceExtensions
     public static ISignalFConfiguration AddDevices(this ISignalFConfiguration configuration)
     {
         return configuration.AddCpuTemperature("CPU", "Temperature")
-                            .AddGpio();
-        //.AddBme280DeviceConfiguration(builder =>
-        //{
-        //    builder.SetOptions(new Bme280DeviceOptions());
-        //});
+                            .AddGpio()
+                            .AddBme280DeviceConfiguration(builder =>
+                            {
+                                builder.SetOptions(new Bme280DeviceOptions());
+                            });
     }
 
     private static ISignalFConfiguration AddGpio(this ISignalFConfiguration configuration)
@@ -28,7 +28,7 @@ public static class DeviceExtensions
                             .AddGpioChannelGroup()
                             .AddGpioPinAccess();
     }
-    
+
     private static ISignalFConfiguration AddGpioChannelGroup(this ISignalFConfiguration configuration)
     {
         configuration.AddGpioChannelGroup(builder =>
@@ -77,11 +77,9 @@ public static class DeviceExtensions
                    });
         });
 
-
         return configuration;
     }
-    
-    
+
     private static ISignalFConfiguration AddGpioPinAccess(this ISignalFConfiguration configuration)
     {
         configuration.AddGpioPinAccessDefinition<IGpioPinAccess>(builder =>

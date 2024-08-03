@@ -5,6 +5,7 @@ using SignalF.Devices.CpuTemperature;
 using SignalF.Extensions.Configuration;
 using SignalF.Extensions.Controller;
 using SignalF.Extensions.IotDevices.Bme280;
+using SignalF.Extensions.IotDevices.Bme680;
 using Tutorial.Configuration;
 using Tutorial.Monitoring;
 
@@ -26,7 +27,7 @@ public class Program
                                   // Register device implementations
                                   services.AddCpuTemperature();
                                   services.AddBme280();
-                                  
+
                                   // Register calculator implementations
                                   services.AddTemperatureMonitoring();
 
@@ -39,3 +40,4 @@ public class Program
         await host.RunAsync();
     }
 }
+
