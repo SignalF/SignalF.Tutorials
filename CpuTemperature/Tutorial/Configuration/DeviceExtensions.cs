@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Versioning;
 using SignalF.Configuration;
+using SignalF.Configuration.Hardware.Gpio;
 using SignalF.Controller.Signals.Devices;
 using SignalF.Datamodel.Hardware;
 using SignalF.Devices.CpuTemperature;
@@ -14,11 +15,11 @@ public static class DeviceExtensions
     public static ISignalFConfiguration AddDevices(this ISignalFConfiguration configuration)
     {
         return configuration.AddCpuTemperature("CPU", "Temperature")
-                            .AddGpio()
-                            .AddBme280Configuration(builder =>
-                            {
-                                builder.SetOptions(new Bme280Options());
-                            });
+                            .AddGpio();
+        //.AddBme280DeviceConfiguration(builder =>
+        //{
+        //    builder.SetOptions(new Bme280DeviceOptions());
+        //});
     }
 
     private static ISignalFConfiguration AddGpio(this ISignalFConfiguration configuration)
@@ -37,7 +38,7 @@ public static class DeviceExtensions
                    .AddGpioChannel(channelBuilder =>
                    {
                        channelBuilder.SetName("GPIO17")
-                                     .SetChannelOptions(new GpioChannelOptions
+                                     .SetOptions(new GpioChannelOptions
                                      {
                                          DriveMode = EGpioPinDriveMode.Output,
                                          SharingMode = EGpioSharingMode.Exclusive,
@@ -47,7 +48,7 @@ public static class DeviceExtensions
                    .AddGpioChannel(channelBuilder =>
                    {
                        channelBuilder.SetName("GPIO18")
-                                     .SetChannelOptions(new GpioChannelOptions
+                                     .SetOptions(new GpioChannelOptions
                                      {
                                          DriveMode = EGpioPinDriveMode.Output,
                                          SharingMode = EGpioSharingMode.Exclusive,
@@ -57,7 +58,7 @@ public static class DeviceExtensions
                    .AddGpioChannel(channelBuilder =>
                    {
                        channelBuilder.SetName("GPIO22")
-                                     .SetChannelOptions(new GpioChannelOptions
+                                     .SetOptions(new GpioChannelOptions
                                      {
                                          DriveMode = EGpioPinDriveMode.Output,
                                          SharingMode = EGpioSharingMode.Exclusive,
@@ -67,7 +68,7 @@ public static class DeviceExtensions
                    .AddGpioChannel(channelBuilder =>
                    {
                        channelBuilder.SetName("GPIO27")
-                                     .SetChannelOptions(new GpioChannelOptions
+                                     .SetOptions(new GpioChannelOptions
                                      {
                                          DriveMode = EGpioPinDriveMode.Output,
                                          SharingMode = EGpioSharingMode.Exclusive,

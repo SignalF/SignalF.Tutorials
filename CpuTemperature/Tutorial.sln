@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tutorial", "Tutorial\Tutori
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.Extensions.IotDevices", "..\..\SignalF.Devices\Source\SignalF.Extensions.IotDevices\SignalF.Extensions.IotDevices.csproj", "{B348BC65-D4E1-4F92-8F62-BBC9016F8974}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.DataOutput.Console", "..\..\SignalF.DataOutput\Source\SignalF.DataOutput.Console\SignalF.DataOutput.Console.csproj", "{E2FB4848-8512-49FE-B2F0-D096512C29D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B348BC65-D4E1-4F92-8F62-BBC9016F8974}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B348BC65-D4E1-4F92-8F62-BBC9016F8974}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B348BC65-D4E1-4F92-8F62-BBC9016F8974}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
