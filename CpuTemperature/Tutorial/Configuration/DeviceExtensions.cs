@@ -6,6 +6,7 @@ using SignalF.Datamodel.Hardware;
 using SignalF.Devices.CpuTemperature;
 using SignalF.Extensions.Configuration;
 using SignalF.Extensions.IotDevices.Bme280;
+using SignalF.Extensions.IotDevices.Bme680;
 
 namespace Tutorial.Configuration;
 
@@ -16,8 +17,9 @@ public static class DeviceExtensions
     {
         return configuration.AddCpuTemperature("CPU", "Temperature")
                             .AddGpio()
-                            .AddBme280DeviceConfiguration(builder =>
+                            .AddBme280DeviceConfiguration<Bme280>(builder =>
                             {
+                                builder.SetType<string>();
                                 builder.SetOptions(new Bme280DeviceOptions());
                             });
     }
