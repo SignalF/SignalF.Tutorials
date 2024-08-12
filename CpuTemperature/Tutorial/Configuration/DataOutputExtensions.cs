@@ -23,7 +23,7 @@ namespace Tutorial.Configuration
                 builder =>
                 {
                     builder.SetName("DataOutputSenderConsole")
-                        .SetOptions(new DataOutputSenderConsoleOptions
+                        .SetOptions(new ConsoleDataOutputSenderOptions
                         {
                             ShowTimestamp = true,
                         });
