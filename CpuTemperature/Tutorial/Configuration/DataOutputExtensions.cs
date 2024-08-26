@@ -19,7 +19,7 @@ namespace Tutorial.Configuration
 
         public static ISignalFConfiguration AddDataOutputSenders(this ISignalFConfiguration configuration)
         {
-            configuration.AddDataOutputSenderConsole(
+            configuration.AddConsoleDataOutputSenderConfiguration(
                 builder =>
                 {
                     builder.SetName("DataOutputSenderConsole")

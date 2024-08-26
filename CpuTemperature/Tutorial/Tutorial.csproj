@@ -9,16 +9,24 @@
 	<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
-	<ItemGroup>
-    <!--<PackageReference Include="SignalF.DataOutput.Console" Version="0.8.0-dev.18" />-->
-    <PackageReference Include="SignalF.Devices.CpuTemperature" Version="0.8.0-dev.40" />
-    <PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.107" />
-    <PackageReference Include="SignalF.Extensions.Controller" Version="0.8.0-dev.107" />
-    <PackageReference Include="SignalF.Extensions.IotDevices" Version="0.8.0-dev.29" />
+  <ItemGroup>
+    <None Remove="Configuration\ConsoleExtensions._" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SignalF.DataOutput\Source\SignalF.DataOutput.Console\SignalF.DataOutput.Console.csproj" />
+    <Compile Include="Configuration\ConsoleExtensions._" />
   </ItemGroup>
+
+	<ItemGroup>
+    <PackageReference Include="SignalF.DataOutput.Console" Version="0.8.0-dev.18" />
+    <PackageReference Include="SignalF.Devices.CpuTemperature" Version="0.8.0-dev.40" />
+    <PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.110" />
+    <PackageReference Include="SignalF.Extensions.Controller" Version="0.8.0-dev.110" />
+    <PackageReference Include="SignalF.Extensions.IotDevices" Version="0.8.0-dev.29" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <ProjectReference Include="..\..\..\SignalF.DataOutput\Source\SignalF.DataOutput.Console\SignalF.DataOutput.Console.csproj" />
+  </ItemGroup>-->
 
 </Project>

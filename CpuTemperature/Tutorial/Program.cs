@@ -32,7 +32,7 @@ public class Program
                                   services.AddTemperatureMonitoring();
 
                                   // Register data outputs.
-                                  services.AddDataOutputSenderConsole();
+                                  services.AddConsole();
                               });
 
         var host = hostBuilder.Build();
