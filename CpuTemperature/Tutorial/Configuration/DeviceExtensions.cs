@@ -58,6 +58,9 @@ public static class DeviceExtensions
                                                          .SetDeviceAddress(1);
                                        });
 
+                            }).AddChannelToDeviceMapping(builder =>
+                            {
+                                builder.AddMapping("I2C1.I2CChannel", "Bme280");
                             });
     }
 
