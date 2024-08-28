@@ -7,23 +7,32 @@
     <Nullable>enable</Nullable>
 	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	<Configurations>Debug;Release;Local</Configurations>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Configuration\ConsoleExtensions._" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Configuration\ConsoleExtensions._" />
-  </ItemGroup>
-
 	<ItemGroup>
-    <PackageReference Include="SignalF.DataOutput.Console" Version="0.8.0-dev.18" />
-    <PackageReference Include="SignalF.Devices.CpuTemperature" Version="0.8.0-dev.40" />
-    <PackageReference Include="SignalF.Extensions.Configuration" Version="0.8.0-dev.110" />
-    <PackageReference Include="SignalF.Extensions.Controller" Version="0.8.0-dev.110" />
-    <PackageReference Include="SignalF.Extensions.IotDevices" Version="0.8.0-dev.29" />
-  </ItemGroup>
+	<None Remove="Configuration\ConsoleExtensions._" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' == 'Local'">
+		<PackageReference Include="SignalF.Extensions.Controller" Version="0.0.0" />
+		<ProjectReference Include="..\..\..\SignalF.DataOutput\Source\SignalF.DataOutput.Console\SignalF.DataOutput.Console.csproj" />
+		<ProjectReference Include="..\..\..\SignalF.Devices\Source\SignalF.Devices.IotDevices\SignalF.Devices.IotDevices.csproj" />
+		<ProjectReference Include="..\..\..\SignalF.Devices\Source\SignalF.Devices.CpuTemperature\SignalF.Devices.CpuTemperature.csproj" />
+		<!--<PackageReference Include="SignalF.Devices.CpuTemperature" Version="0.0.0" />-->
+		<!--<PackageReference Include="SignalF.Devices.IotDevices" Version="0.0.0" />-->
+		<!--<PackageReference Include="SignalF.DataOutput.Console" Version="0.0.0" />-->
+	</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)' != 'Local'">
+		<PackageReference Include="SignalF.Extensions.Controller" Version="0.8.0-dev.136" />
+		<PackageReference Include="SignalF.DataOutput.Console" Version="0.8.0-dev.48" />
+		<PackageReference Include="SignalF.Devices.CpuTemperature" Version="0.8.0-dev.126" />
+		<PackageReference Include="SignalF.Devices.IotDevices" Version="0.8.0-dev.124" />
+	</ItemGroup>
+	
+	<ItemGroup Condition="'$(Configuration)' != 'Local'">
+		<PackageReference Include="System.Text.Json" Version="8.0.4" />
+	</ItemGroup>
 
   <!--<ItemGroup>
     <ProjectReference Include="..\..\..\SignalF.DataOutput\Source\SignalF.DataOutput.Console\SignalF.DataOutput.Console.csproj" />

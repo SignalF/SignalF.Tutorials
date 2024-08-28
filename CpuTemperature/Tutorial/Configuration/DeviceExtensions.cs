@@ -1,12 +1,17 @@
 ﻿using System.Runtime.Versioning;
+using Scotec.Math.Units;
 using SignalF.Configuration;
+using SignalF.Configuration.Hardware;
 using SignalF.Configuration.Hardware.Gpio;
+using SignalF.Configuration.Hardware.I2c;
+using SignalF.Controller.Hardware.Channels.I2c;
+using SignalF.Controller.Hardware.DeviceBindings;
 using SignalF.Controller.Signals.Devices;
 using SignalF.Datamodel.Hardware;
+using SignalF.Datamodel.Signals;
 using SignalF.Devices.CpuTemperature;
+using SignalF.Devices.IotDevices.Bme280;
 using SignalF.Extensions.Configuration;
-using SignalF.Extensions.IotDevices.Bme280;
-using SignalF.Extensions.IotDevices.Bme680;
 
 namespace Tutorial.Configuration;
 
@@ -17,10 +22,42 @@ public static class DeviceExtensions
     {
         return configuration.AddCpuTemperature("CPU", "Temperature")
                             .AddGpio()
-                            .AddBme280DeviceConfiguration<Bme280>(builder =>
+                            .AddBme280();
+    }
+
+    private static ISignalFConfiguration AddBme280(this ISignalFConfiguration configuration)
+    {
+        return configuration.AddBme280Template<Bme280>(builder => { builder.SetName("Bme280Template"); })
+                            .AddBme280Definition<Bme280>(builder =>
                             {
-                                builder.SetType<string>();
-                                builder.SetOptions(new Bme280DeviceOptions());
+                                builder.SetName("Bme280Definition")
+                                       .UseTemplate("Bme280Template")
+                                       .AddSignalSourceDefinition("Temperature", EUnitType.Temperature);
+                            })
+                            .AddBme280Configuration(builder =>
+                            {
+                                builder.SetName("Bme280")
+                                       .UseDefinition("Bme280Definition")
+                                       .SetOptions(new Bme280Options())
+                                       .AddSignalSourceConfiguration("Temperature", Temperature.Units.DegreeCelsius);
+                            })
+                            .AddI2cDeviceBinding(builder =>
+                            {
+                                builder.SetName("I2C1")
+                                       .SetOptions(new I2cDeviceBindingOptions())
+                                       .SetBusId(1);
+                            })
+                            .AddI2cChannelGroup(builder =>
+                            {
+                                builder.SetName("I2C1")
+                                       .SetDeviceBinding("I2C1")
+                                       .SetOptions(new I2cChannelOptions())
+                                       .AddI2cChannel(channelBuilder =>
+                                       {
+                                           channelBuilder.SetName("I2CChannel")
+                                                         .SetDeviceAddress(1);
+                                       });
+
                             });
     }
 

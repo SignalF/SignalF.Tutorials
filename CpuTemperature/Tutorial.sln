@@ -7,20 +7,41 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tutorial", "Tutorial\Tutori
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.DataOutput.Console", "..\..\SignalF.DataOutput\Source\SignalF.DataOutput.Console\SignalF.DataOutput.Console.csproj", "{E2FB4848-8512-49FE-B2F0-D096512C29D8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.Devices.IotDevices", "..\..\SignalF.Devices\Source\SignalF.Devices.IotDevices\SignalF.Devices.IotDevices.csproj", "{A342E91D-1268-4951-925B-84F7D8933556}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignalF.Devices.CpuTemperature", "..\..\SignalF.Devices\Source\SignalF.Devices.CpuTemperature\SignalF.Devices.CpuTemperature.csproj", "{F6534C8F-B707-4CFA-BB14-9A83F8209072}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Local|Any CPU = Local|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Local|Any CPU.Build.0 = Local|Any CPU
 		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC487C35-BCAB-4530-B6C0-6D459EB52243}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Local|Any CPU.Build.0 = Local|Any CPU
 		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2FB4848-8512-49FE-B2F0-D096512C29D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A342E91D-1268-4951-925B-84F7D8933556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A342E91D-1268-4951-925B-84F7D8933556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A342E91D-1268-4951-925B-84F7D8933556}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{A342E91D-1268-4951-925B-84F7D8933556}.Local|Any CPU.Build.0 = Local|Any CPU
+		{A342E91D-1268-4951-925B-84F7D8933556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A342E91D-1268-4951-925B-84F7D8933556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6534C8F-B707-4CFA-BB14-9A83F8209072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6534C8F-B707-4CFA-BB14-9A83F8209072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6534C8F-B707-4CFA-BB14-9A83F8209072}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{F6534C8F-B707-4CFA-BB14-9A83F8209072}.Local|Any CPU.Build.0 = Local|Any CPU
+		{F6534C8F-B707-4CFA-BB14-9A83F8209072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6534C8F-B707-4CFA-BB14-9A83F8209072}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

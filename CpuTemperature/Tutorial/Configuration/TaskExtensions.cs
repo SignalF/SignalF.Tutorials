@@ -24,9 +24,13 @@ public static class TaskExtensions
 
     public static ISignalFConfiguration AddTaskMappings(this ISignalFConfiguration configuration)
     {
-        configuration.AddTaskMappings(builder => { builder.MapSignalProcessorToTask("CPU", OneSecondWriteTask); })
-                     .AddTaskMappings(builder => { builder.MapSignalProcessorToTask("TemperatureMonitoring", OneSecondCalculateTask); })
-                     .AddTaskMappings(builder => { builder.MapSignalProcessorToTask("GpioPinAccess", OneSecondReadTask); });
+        configuration.AddTaskMappings(builder =>
+        {
+            builder.MapSignalProcessorToTask("CPU", OneSecondWriteTask)
+                   .MapSignalProcessorToTask("TemperatureMonitoring", OneSecondCalculateTask)
+                   .MapSignalProcessorToTask("GpioPinAccess", OneSecondReadTask)
+                   .MapSignalProcessorToTask("Bme280", OneSecondWriteTask);
+        });
 
         return configuration;
     }

@@ -3,7 +3,6 @@ using SignalF.Configuration;
 using SignalF.Controller.Configuration;
 using SignalF.Datamodel.Configuration;
 using Tutorial.Monitoring;
-using Tutorial.Configuration;
 
 namespace Tutorial.Configuration;
 
@@ -29,7 +28,7 @@ public class SystemConfiguration : ISystemConfiguration
             .AddDataOutputSenders()
             .AddTasks()
             .AddTaskMappings();
-        
+
         signalFConfiguration.Build(configuration);
     }
 }

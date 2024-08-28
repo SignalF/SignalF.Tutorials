@@ -1,11 +1,12 @@
 ﻿using System.Runtime.Versioning;
 using SignalF.Controller.Configuration;
+using SignalF.Controller.Hardware.Channels.I2c;
+using SignalF.Controller.Hardware.DeviceBindings;
 using SignalF.DataOutput.Console;
 using SignalF.Devices.CpuTemperature;
+using SignalF.Devices.IotDevices.Bme280;
 using SignalF.Extensions.Configuration;
 using SignalF.Extensions.Controller;
-using SignalF.Extensions.IotDevices.Bme280;
-using SignalF.Extensions.IotDevices.Bme680;
 using Tutorial.Configuration;
 using Tutorial.Monitoring;
 
@@ -27,6 +28,7 @@ public class Program
                                   // Register device implementations
                                   services.AddCpuTemperature();
                                   services.AddBme280();
+                                  services.AddTransient<II2cDeviceBinding, I2cDeviceBinding>();
 
                                   // Register calculator implementations
                                   services.AddTemperatureMonitoring();
@@ -40,4 +42,3 @@ public class Program
         await host.RunAsync();
     }
 }
-
