@@ -58,13 +58,13 @@ public static class DeviceExtensions
                                        .SetOptions(new I2cChannelOptions())
                                        .AddI2cChannel(channelBuilder =>
                                        {
-                                           channelBuilder.SetName("I2CChannel")
+                                           channelBuilder.SetName("I2CChannel_76")
                                                          .SetDeviceAddress(0x76);
                                        });
 
                             }).AddChannelToDeviceMapping(builder =>
                             {
-                                builder.AddMapping("I2C1.I2CChannel", "Bme280");
+                                builder.AddMapping("I2C1.I2CChannel_76", "Bme280");
                             });
     }
 
