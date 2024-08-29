@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Versioning;
+using Iot.Device.Bmxx80.PowerMode;
 using Scotec.Math.Units;
 using SignalF.Configuration;
 using SignalF.Configuration.Hardware;
@@ -38,7 +39,10 @@ public static class DeviceExtensions
                             {
                                 builder.SetName("Bme280")
                                        .UseDefinition("Bme280Definition")
-                                       .SetOptions(new Bme280Options())
+                                       .SetOptions(new Bme280Options
+                                       {
+                                           PowerMode = Bmx280PowerMode.Normal
+                                       })
                                        .AddSignalSourceConfiguration("Temperature", Temperature.Units.DegreeCelsius);
                             })
                             .AddI2cDeviceBinding(builder =>
@@ -55,7 +59,7 @@ public static class DeviceExtensions
                                        .AddI2cChannel(channelBuilder =>
                                        {
                                            channelBuilder.SetName("I2CChannel")
-                                                         .SetDeviceAddress(0x77);
+                                                         .SetDeviceAddress(0x76);
                                        });
 
                             }).AddChannelToDeviceMapping(builder =>

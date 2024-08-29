@@ -11,7 +11,7 @@ public static class DataOutputExtensions
         configuration.AddDataOutputConfiguration(builder =>
         {
             builder.SetName("Measurement")
-                   //.AddSignalSource("CPU.Temperature")
+                   .AddSignalSource("CPU.Temperature")
                    .AddSignalSource("Bme280.Temperature")
                    .AddDataOutputSender("DataOutputSenderConsole");
         });
