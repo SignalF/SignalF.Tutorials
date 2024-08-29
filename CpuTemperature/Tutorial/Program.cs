@@ -17,6 +17,11 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
+        var loop = true;
+        while (loop)
+        {
+            Thread.Sleep(1000);
+        }
         var hostBuilder = Host.CreateDefaultBuilder(args)
                               .UseSignalFController()
                               .UseSignalFConfiguration()

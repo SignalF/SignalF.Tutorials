@@ -55,7 +55,7 @@ public static class DeviceExtensions
                                        .AddI2cChannel(channelBuilder =>
                                        {
                                            channelBuilder.SetName("I2CChannel")
-                                                         .SetDeviceAddress(0x76);
+                                                         .SetDeviceAddress(0x77);
                                        });
 
                             }).AddChannelToDeviceMapping(builder =>
