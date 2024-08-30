@@ -1,4 +1,4 @@
-﻿using System.Runtime.Versioning;
+﻿ using System.Runtime.Versioning;
 using Iot.Device.Bmxx80.PowerMode;
 using Scotec.Math.Units;
 using SignalF.Configuration;
